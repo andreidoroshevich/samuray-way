@@ -1,0 +1,10 @@
+.main {
+    background-color: lightblue;
+    display: flex;
+    font-size: calc(10px + 2vmin);
+    color: black;
+
+
+}
+
+

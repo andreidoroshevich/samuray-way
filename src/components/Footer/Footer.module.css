@@ -1,0 +1,13 @@
+.AppFooter {
+    background-color: #282c34;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    border-bottom: 10px;
+    border-bottom-color: white;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+

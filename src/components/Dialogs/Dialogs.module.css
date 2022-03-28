@@ -1,0 +1,33 @@
+.dialogs {
+    display: flex;
+    font-size: 18px;
+}
+
+.dialog {
+    margin: 20px;
+    margin-right: 50px;
+}
+
+.dialog a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    margin: 20px;
+}
+
+.dialog a.active {
+    color: blue;
+    font-size: 18px;
+}
+
+.dialog_items {
+
+}
+
+.messages {
+}
+
+.message {
+    margin: 20px;
+    margin-left: 50px;
+}
