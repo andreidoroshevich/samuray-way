@@ -1,13 +1,11 @@
 import React from 'react';
 import classes from './Post.module.css'
-import {addPost} from "../../../../redux/state";
 
 export type PostPropsType = {
     id: number
     message: string
     avatar: string
     likeQuantity: number
-    // addPost: (message: string)=>void
 }
 
 

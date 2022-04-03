@@ -12,14 +12,17 @@ import Settings from "./components/Settings/Settings";
 import {PostPropsType} from "./components/Profile/MyPosts/Post/Post";
 import {DialogPropsType} from "./components/Dialogs/Dialog/Dialog";
 import {MessagePropsType} from "./components/Dialogs/Message/Message";
+import {ActionType} from "./redux/state";
 
 type AppPropsType = {
     posts: Array<PostPropsType>;
     dialogs: Array<DialogPropsType>
     messages: Array<MessagePropsType>
-    addPost: (postMessage: string) => void
+    // addPost: (postMessage: string) => void
     newPostText: string
-    updateNewPostText: (text: string) => void
+    // updateNewPostText: (text: string) => void
+    dispatch: (action: ActionType) => void
+
 }
 
 const App = (props: AppPropsType) => {
@@ -33,7 +36,7 @@ const App = (props: AppPropsType) => {
                 <div className={classes.MainContent}>
 
                     <Route path="/Dialogs" render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
-                    <Route path="/Profile" render={() => <Profile posts={props.posts} addPost={props.addPost} updateNewPostText={props.updateNewPostText}  newPostText={props.newPostText}/>}/>
+                    <Route path="/Profile" render={() => <Profile posts={props.posts} dispatch={props.dispatch} newPostText={props.newPostText}/>}/>
                     <Route path="/News" render={() => <News/>}/>
                     <Route path="/Music" render={() => <Music/>}/>
                     <Route path="/Settings" render={() => <Settings/>}/>
