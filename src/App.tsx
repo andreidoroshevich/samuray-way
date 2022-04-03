@@ -16,8 +16,8 @@ import {ActionType} from "./redux/state";
 
 type AppPropsType = {
     posts: Array<PostPropsType>;
-    dialogs: Array<DialogPropsType>
-    messages: Array<MessagePropsType>
+    dialogs: any
+    messages: any
     newPostText: string
     dispatch: (action: ActionType) => void
     newMessageBody: string
