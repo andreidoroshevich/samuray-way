@@ -9,7 +9,7 @@ import {BrowserRouter} from "react-router-dom";
 const rerenderEntireTree =() => {
     ReactDOM.render(
         <BrowserRouter>
-            <App posts={store.getState().posts} dialogs = {store.getState().dialogs} messages = {store.getState().messages} dispatch={store.dispatch.bind(store)} newPostText={store.getState().newPostText} />
+            <App posts={store.getState().posts} dialogs = {store.getState().dialogs} messages = {store.getState().messages} dispatch={store.dispatch.bind(store)}  newPostText={store.getState().newPostText} newMessageBody={store.getState().newMessageBody}  />
         </BrowserRouter>,
         document.getElementById('root')
     );

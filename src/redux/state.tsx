@@ -8,6 +8,7 @@ export type statePropsType = {
     dialogs: Array<DialogPropsType>
     messages: Array<MessagePropsType>
     newPostText: string
+    newMessageBody: string
 }
 
 export type StoreType = {
@@ -17,23 +18,40 @@ export type StoreType = {
     getState: () => statePropsType
     dispatch: (action: ActionType) => void
 }
-export type ActionType= ReturnType<typeof updateNewPostTextCreator> | ReturnType<typeof addPostActionCreator>
+export type ActionType = ReturnType<typeof updateNewPostTextCreator> | ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateMessageBodyCreator> | ReturnType<typeof sendMessageCreator>
 const ADD_POST = "ADD-POST";
 const APDATE_NEW_POST_TEXT = "APDATE-NEW-POST-TEXT";
+const APDATE_NEW_MESSAGE_BODY = "APDATE_NEW_MESSAGE_BODY";
+const SEND_MESSAGE = "SEND_MESSAGE";
 
 
-export const addPostActionCreator=() =>{
+export const addPostActionCreator = () => {
     return {
         type: ADD_POST
     } as const
 }
 
-export const updateNewPostTextCreator=(newText: string) =>{
+export const updateNewPostTextCreator = (newText: string) => {
     return {
         type: APDATE_NEW_POST_TEXT,
         newText: newText
     } as const
 }
+
+export const updateMessageBodyCreator = (body: string) => {
+    return {
+        type: APDATE_NEW_MESSAGE_BODY,
+        body: body
+    } as const
+}
+
+export const sendMessageCreator = () => {
+    return {
+        type: SEND_MESSAGE,
+    } as const
+}
+
+
 
 let store: StoreType = {
     _state: {
@@ -76,7 +94,7 @@ let store: StoreType = {
             {id: 5, message: 'Yo'},
             {id: 6, message: 'That is cool'}
         ],
-
+        newMessageBody: '',
         newPostText: '',
     },
     _callsubscriber() {
@@ -103,6 +121,14 @@ let store: StoreType = {
             this._callsubscriber()
         } else if (action.type === "APDATE-NEW-POST-TEXT") {
             this._state.newPostText = action.newText
+            this._callsubscriber()
+        } else if (action.type === "APDATE_NEW_MESSAGE_BODY") {
+            this._state.newMessageBody = action.body
+            this._callsubscriber()
+        } else if (action.type === "SEND_MESSAGE") {
+            let body = this._state.newMessageBody
+            this._state.newMessageBody = ''
+            this._state.messages.push({id: 10, message: body})
             this._callsubscriber()
         }
     }

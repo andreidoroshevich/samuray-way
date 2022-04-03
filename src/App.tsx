@@ -18,11 +18,9 @@ type AppPropsType = {
     posts: Array<PostPropsType>;
     dialogs: Array<DialogPropsType>
     messages: Array<MessagePropsType>
-    // addPost: (postMessage: string) => void
     newPostText: string
-    // updateNewPostText: (text: string) => void
     dispatch: (action: ActionType) => void
-
+    newMessageBody: string
 }
 
 const App = (props: AppPropsType) => {
@@ -35,7 +33,7 @@ const App = (props: AppPropsType) => {
                 <Navbar/>
                 <div className={classes.MainContent}>
 
-                    <Route path="/Dialogs" render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
+                    <Route path="/Dialogs" render={() => <Dialogs dialogs={props.dialogs} dispatch={props.dispatch} messages={props.messages} newMessageBody={props.newMessageBody}/>}/>
                     <Route path="/Profile" render={() => <Profile posts={props.posts} dispatch={props.dispatch} newPostText={props.newPostText}/>}/>
                     <Route path="/News" render={() => <News/>}/>
                     <Route path="/Music" render={() => <Music/>}/>
