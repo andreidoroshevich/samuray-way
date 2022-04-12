@@ -7,7 +7,9 @@ import {ActionType} from "../../../redux/redux-store";
 type MyPostsPropsType = {
     posts: Array<PostPropsType>
     newPostText: string
-    dispatch: (action: ActionType) => void
+    updateNewPostText: (text:string)=>void
+    addPost: ()=>void
+    dispatch?: (action: ActionType) => void
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -18,17 +20,13 @@ const MyPosts = (props: MyPostsPropsType) => {
     const newPostElement = React.createRef<HTMLTextAreaElement>()
 
     const addPost = () => {
-        let text = newPostElement.current?.value
-        if (text) {
-            props.dispatch(addPostActionCreator())
-        }
+        props.addPost()
     }
 
     const onPostChange = ()=>{
         let text = newPostElement.current?.value
         if (text) {
-            // props.dispatch({type: "APDATE-NEW-POST-TEXT", newText: text})
-            props.dispatch(updateNewPostTextCreator(text))
+            props.updateNewPostText(text)
         }
     }
 

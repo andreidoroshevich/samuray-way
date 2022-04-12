@@ -4,12 +4,12 @@ import messagesReducer, {sendMessageCreator, updateMessageBodyCreator} from "./m
 import dialogsReducer, {sendDialogCreator, updateDialogBodyCreator} from "./dialogs-reducer";
 import {PostPropsType} from "../components/Profile/MyPosts/Post/Post";
 
-export type ActionType = ReturnType<typeof updateNewPostTextCreator> |
-    ReturnType<typeof addPostActionCreator> |
-    ReturnType<typeof updateMessageBodyCreator> |
-    ReturnType<typeof sendMessageCreator> |
-    ReturnType<typeof sendDialogCreator> |
-    ReturnType<typeof updateDialogBodyCreator>
+export type ActionType = ReturnType<typeof updateNewPostTextCreator>
+    | ReturnType<typeof addPostActionCreator>
+    | ReturnType<typeof updateMessageBodyCreator>
+    | ReturnType<typeof sendMessageCreator>
+    | ReturnType<typeof sendDialogCreator>
+    | ReturnType<typeof updateDialogBodyCreator>
 
 export type statePropsType = {
     posts: Array<PostPropsType>
@@ -24,7 +24,6 @@ export type StoreType = {
     subscribe: (callback: () => void) => void
     getState: () => statePropsType
 }
-
 
 
 let reducers = combineReducers({

@@ -2,16 +2,15 @@ import React, {ChangeEvent} from 'react';
 import classes from './Dialogs.module.css';
 import Dialog, {DialogPropsType} from "./Dialog/Dialog";
 import Message, {MessagePropsType} from "./Message/Message";
-import {sendMessageCreator, updateMessageBodyCreator} from "../../redux/messages-reducer";
-import {PostPropsType} from "../Profile/MyPosts/Post/Post";
-import {ActionType} from "../../redux/redux-store";
 
 
 type DialogsPropsType = {
     dialogs: Array<DialogPropsType>
     messages: Array<MessagePropsType>
     newMessageBody: string
-    dispatch: (action: ActionType) => void
+    // dispatch: (action: ActionType) => void
+    updateNewMessageBody: (body: string)=>void
+    sendMessage: ()=>void
 }
 
 
@@ -22,14 +21,12 @@ const Dialogs = (props:DialogsPropsType) => {
     const newMessageBody = props.newMessageBody
 
     const onSendMessageClick = () => {
-        props.dispatch(sendMessageCreator())
-
-
+        props.sendMessage()
     }
 
     const onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
        let body = e.currentTarget.value
-        props.dispatch(updateMessageBodyCreator(body))
+        props.updateNewMessageBody(body)
     }
 
 
