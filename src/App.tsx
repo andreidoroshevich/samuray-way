@@ -10,16 +10,13 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {PostPropsType} from "./components/Profile/MyPosts/Post/Post";
-import {DialogPropsType} from "./components/Dialogs/Dialog/Dialog";
-import {MessagePropsType} from "./components/Dialogs/Message/Message";
-import {ActionType} from "./redux/state";
 
 type AppPropsType = {
     posts: Array<PostPropsType>;
     dialogs: any
     messages: any
     newPostText: string
-    dispatch: (action: ActionType) => void
+    dispatch: (action: any) => void
     newMessageBody: string
 }
 
