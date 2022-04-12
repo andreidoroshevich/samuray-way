@@ -3,10 +3,19 @@ import classes from './Dialogs.module.css';
 import Dialog, {DialogPropsType} from "./Dialog/Dialog";
 import Message, {MessagePropsType} from "./Message/Message";
 import {sendMessageCreator, updateMessageBodyCreator} from "../../redux/messages-reducer";
+import {PostPropsType} from "../Profile/MyPosts/Post/Post";
+import {ActionType} from "../../redux/redux-store";
 
 
-const Dialogs = (props: { dialogs: Array<DialogPropsType>; messages: Array<MessagePropsType>; newMessageBody: string, dispatch: (action: any) => void
-}) => {
+type DialogsPropsType = {
+    dialogs: Array<DialogPropsType>
+    messages: Array<MessagePropsType>
+    newMessageBody: string
+    dispatch: (action: ActionType) => void
+}
+
+
+const Dialogs = (props:DialogsPropsType) => {
 
     const dialogsElements = props.dialogs.map(dialog => <Dialog name={dialog.name} id={dialog.id}/>)
     const messagesElements = props.messages.map(message => <Message message={message.message} id={message.id}/>)

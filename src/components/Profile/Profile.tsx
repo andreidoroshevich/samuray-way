@@ -1,11 +1,12 @@
 import React from 'react';
 import MyPosts from "./MyPosts/MyPosts";
 import {PostPropsType} from "./MyPosts/Post/Post";
+import {ActionType} from "../../redux/redux-store";
 
 type ProfilePropsType = {
     posts: Array<PostPropsType>
     newPostText: string
-    dispatch: (action: any) => void
+    dispatch: (action: ActionType) => void
 }
 
 const Profile = (props: ProfilePropsType) => {
