@@ -4,7 +4,6 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import classes from './components/Profile/Profile.module.css'
-import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
@@ -14,6 +13,7 @@ import {ActionType} from "./redux/redux-store";
 import {DialogPropsType} from "./components/Dialogs/Dialog/Dialog";
 import {MessagePropsType} from "./components/Dialogs/Message/Message";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 type AppPropsType = {
     posts: Array<PostPropsType>;
@@ -36,6 +36,7 @@ const App = (props: AppPropsType) => {
 
                     <Route path="/Dialogs" render={() => <DialogsContainer dialogs={props.dialogs} dispatch={props.dispatch} messages={props.messages} newMessageBody={props.newMessageBody}/>}/>
                     <Route path="/Profile" render={() => <Profile posts={props.posts} dispatch={props.dispatch} newPostText={props.newPostText}/>}/>
+                    <Route path="/Users" render={() => <UsersContainer/>}/>
                     <Route path="/News" render={() => <News/>}/>
                     <Route path="/Music" render={() => <Music/>}/>
                     <Route path="/Settings" render={() => <Settings/>}/>

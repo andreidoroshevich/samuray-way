@@ -8,14 +8,12 @@ type DialogsPropsType = {
     dialogs: Array<DialogPropsType>
     messages: Array<MessagePropsType>
     newMessageBody: string
-    // dispatch: (action: ActionType) => void
     updateNewMessageBody: (body: string)=>void
     sendMessage: ()=>void
 }
 
 
 const Dialogs = (props:DialogsPropsType) => {
-
     const dialogsElements = props.dialogs.map(dialog => <Dialog key={dialog.id} name={dialog.name} id={dialog.id}/>)
     const messagesElements = props.messages.map(message => <Message key={message.id} message={message.message} id={message.id}/>)
     const newMessageBody = props.newMessageBody
@@ -44,7 +42,7 @@ const Dialogs = (props:DialogsPropsType) => {
 
                         <textarea value={newMessageBody}
                                    onChange={onNewMessageChange}
-                                   placeholder={'Enter your message'}></textarea>
+                                   placeholder={'Enter your message'}/>
 
 
 

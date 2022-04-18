@@ -1,9 +1,7 @@
-import React, {ChangeEvent} from 'react';
-import classes from './Dialogs.module.css';
-import Dialog, {DialogPropsType} from "./Dialog/Dialog";
-import Message, {MessagePropsType} from "./Message/Message";
+﻿import React from 'react';
+import {DialogPropsType} from "./Dialog/Dialog";
+import  {MessagePropsType} from "./Message/Message";
 import {sendMessageCreator, updateMessageBodyCreator} from "../../redux/messages-reducer";
-import {PostPropsType} from "../Profile/MyPosts/Post/Post";
 import {ActionType} from "../../redux/redux-store";
 import Dialogs from "./Dialogs";
 
@@ -25,7 +23,6 @@ const DialogsContainer = (props:DialogsPropsType) => {
     const onSendMessageClick = () => {
         props.dispatch(sendMessageCreator())
     }
-
     const onNewMessageChange = (body: string) => {
         props.dispatch(updateMessageBodyCreator(body))
     }
@@ -38,5 +35,29 @@ const DialogsContainer = (props:DialogsPropsType) => {
                  newMessageBody={props.newMessageBody}/>
     );
 };
+
+// const mapStateToProps = (state: DialogsPropsType)=>{
+//     return {
+//         dialogs: state.dialogs,
+//         messages: state.messages,
+//         newDialogBody: state.newMessageBody
+//     }
+// }
+
+// const mapDispatchToProps = (dispatch: (action: ActionType) => void)=>{
+//     return {
+//         updateNewMessageBody: (body: string)=>{
+//             dispatch(updateMessageBodyCreator(body))
+//         },
+//         sendMessage: ()=>{
+//             dispatch(sendMessageCreator())
+//
+//         }
+//     }
+//
+// }
+//
+// const DialogsContainer = connect(mapStateToProps,mapDispatchToProps) (Dialogs);
+
 
 export default DialogsContainer;
