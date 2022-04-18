@@ -24,14 +24,11 @@ const DialogsContainer = (props:DialogsPropsType) => {
 
     const onSendMessageClick = () => {
         props.dispatch(sendMessageCreator())
-
-
     }
 
     const onNewMessageChange = (body: string) => {
         props.dispatch(updateMessageBodyCreator(body))
     }
-
 
     return (
         <Dialogs updateNewMessageBody={onNewMessageChange}

@@ -33,12 +33,16 @@ export const sendDialogCreator = () => {
 
 const dialogsReducer = (state = initialState, action: ActionsType) => {
     if (action.type === UPDATE_NEW_DIALOGS_BODY) {
-        state.newDialogBody = action.body
+        const copyState = {...state}
+        copyState.newDialogBody = action.body
+        return copyState
     } else if (action.type === SEND_DIALOG) {
         let body = state.newDialogBody
-        state.newDialogBody = ''
-        state.dialogs.push({id: 10, name: body})
-
+        const copyState = {...state}
+        copyState.dialogs = [...state.dialogs]
+        copyState.newDialogBody = ''
+        copyState.dialogs.push({id: 10, name: body})
+        return copyState
     }
     return (
         state

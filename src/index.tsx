@@ -7,7 +7,6 @@ import {BrowserRouter} from "react-router-dom";
 
 
 const rerenderEntireTree = () => {
-    console.log(store.getState())
     ReactDOM.render(
         <BrowserRouter>
             <App posts={store.getState().posts.posts}
