@@ -1,5 +1,7 @@
 .userPhoto {
     width: 100px;
+    height: 100px;
+    border: 1px solid grey;
 }
 
 .tr {
@@ -46,5 +48,10 @@
 
 .button {
     width: 100px;
+    height:30px;
     text-align: center;
+    border-radius: 2px;
+    background-color: cornflowerblue;
+    color: whitesmoke;
 }
+

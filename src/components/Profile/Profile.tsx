@@ -1,25 +1,15 @@
 import React from 'react';
-import MyPosts from "./MyPosts/MyPosts";
-import {PostPropsType} from "./MyPosts/Post/Post";
-import {ActionType} from "../../redux/redux-store";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
-type ProfilePropsType = {
-    posts: Array<PostPropsType>
-    newPostText: string
-    dispatch: (action: ActionType) => void
-}
 
-const Profile = (props: ProfilePropsType) => {
+
+const Profile = () => {
     return (
         <>
             <div>
                 <img src='https://www.encyclopedie-environnement.org/app/uploads/2020/11/couv_nature.jpg' alt='Logo'/>
             </div>
-            <MyPostsContainer posts={props.posts}
-                              dispatch={props.dispatch}
-                              newPostText={props.newPostText}
-            />
+            <MyPostsContainer/>
         </>
     );
 };

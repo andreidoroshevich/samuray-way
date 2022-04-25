@@ -6,13 +6,12 @@ const Navbar = () => {
     return (
         <div className='Left-bar'>
             <nav className={classes.Navbar}>
-
                 <NavbarItem item={'Profile'} />
                 <NavbarItem item={'Dialogs'} />
+                <NavbarItem item={'Users'} />
                 <NavbarItem item={'News'} />
                 <NavbarItem item={'Music'} />
                 <NavbarItem item={'Settings'} />
-
             </nav>
 
         </div>
