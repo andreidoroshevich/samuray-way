@@ -42,7 +42,6 @@ class UsersContainer extends React.Component<PropsType & MapDispatchPropsType> {
             this.props.setIsFetching(false)
             this.props.setUsers(response.data.items)
             this.props.setUsersTotalCount(response.data.totalCount)
-            console.log(response.data.totalCount)
         })
     }
 

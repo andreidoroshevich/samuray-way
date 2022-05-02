@@ -3,6 +3,7 @@ import styles from "./users.module.css";
 // @ts-ignore
 import userPhoto from "../../assets/images/user-profile.png";
 import {UserType} from "../../redux/users-reducer";
+import { NavLink } from "react-router-dom";
 
 export type UsersPropsType = {
     users: Array<UserType>,
@@ -48,8 +49,10 @@ const Users = (props: UsersPropsType) => {
                             <tr className={styles.tr}>
                                 <td className={styles.photo}>
                                     <div>
+                                        <NavLink to={'/profile/' + u.id}>
                                         <img alt={'missing photo'} className={styles.userPhoto}
                                              src={u.photos.small != null ? u.photos.small : userPhoto}/>
+                                        </NavLink>
                                     </div>
                                     <div>
                                         {u.followed

@@ -7,12 +7,12 @@ import {Dispatch} from "redux";
 import {connect} from "react-redux";
 
 
-type MapPostsDispatchPropsType = {
+export type MapPostsDispatchPropsType = {
     addPost: ()=>void,
     updateNewPostText: (text: string)=>void
 }
 
-type MapStateToPropsType = {
+export type MapStateToPropsType = {
     posts: Array<PostPropsType>,
     newPostText: string
 }
