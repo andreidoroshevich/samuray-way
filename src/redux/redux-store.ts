@@ -2,8 +2,8 @@ import {combineReducers, createStore} from "redux";
 import postsReducer, {addPostActionCreator, updateNewPostTextCreator} from "./posts-reducer";
 import messagesReducer, {sendMessageCreator, updateMessageBodyCreator} from "./messages-reducer";
 import dialogsReducer, {sendDialogCreator, updateDialogBodyCreator} from "./dialogs-reducer";
-import {PostPropsType} from "../components/Profile/MyPosts/Post/Post";
 import usersReducer from "./users-reducer";
+import {PostPropsType} from "../components/Profile/MyPosts/Post/Post";
 import {DialogPropsType} from "../components/Dialogs/Dialog/Dialog";
 import {MessagePropsType} from "../components/Dialogs/Message/Message";
 

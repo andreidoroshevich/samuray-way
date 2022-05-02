@@ -19,23 +19,29 @@ export type UserType = {
 
 export type InitialStateType = {
     users: Array<UserType>
+    pageSize: number,
+    totalUsersCount: number
+    currentPage: number
 }
 
 let initialState: InitialStateType = {
-    users: [
-        // {id: 1, userPhotoUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO2pG4LmrRGPh-6htiEVO7q0KsgZSA-bqJKQ&usqp=CAU', followed: true, fullName:'Dmitry', status: 'I am a boss', location: {city: 'Minsk', country: 'Belarus'}},
-        // {id: 2, userPhotoUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO2pG4LmrRGPh-6htiEVO7q0KsgZSA-bqJKQ&usqp=CAU', followed: false, fullName:'Andrey', status: 'I am cool', location: {city: 'Moscow', country: 'Russia'}},
-        // {id: 3, userPhotoUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO2pG4LmrRGPh-6htiEVO7q0KsgZSA-bqJKQ&usqp=CAU', followed: false, fullName:'Maxim', status: 'Life is good', location: {city: 'Kiev', country: 'Ukraine'}},
-        // {id: 4, userPhotoUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO2pG4LmrRGPh-6htiEVO7q0KsgZSA-bqJKQ&usqp=CAU', followed: true, fullName:'Vadim', status: 'The best of the best', location: {city: 'Boston', country: 'US'}},
-        // {id: 5, userPhotoUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO2pG4LmrRGPh-6htiEVO7q0KsgZSA-bqJKQ&usqp=CAU', followed: true, fullName:'Sasha', status: 'Life is pain', location: {city: 'London', country: 'GB'}},
-    ]
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
-type ActionsType = ReturnType<typeof followAC> | ReturnType<typeof unfollowAC> | ReturnType<typeof setUsersAC>
+type ActionsType = ReturnType<typeof followAC>
+    | ReturnType<typeof unfollowAC>
+    | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof setUsersTotalCountAC>
 
 export const FOLLOW = "FOLLOW";
 export const UNFOLLOW = "UNFOLLOW";
 export const SET_USERS = "SET_USERS";
+export const SET_CURRENT_PAGE= "SET_CURRENT_PAGE";
+export const SET_USERS_TOTAL_COUNT= "SET_USERS_TOTAL_COUNT";
 
 export const followAC = (userId:number) => {
     return {
@@ -57,18 +63,38 @@ export const setUsersAC = (users:Array<UserType>) => {
         users: users
     } as const
 }
+
+export const setCurrentPageAC = (currentPage: number) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        currentPage: currentPage
+    } as const
+}
+
+export const setUsersTotalCountAC = (totalUsersCount: number) => {
+    return {
+        type: SET_USERS_TOTAL_COUNT,
+        totalUsersCount: totalUsersCount
+    } as const
+}
+
+
+
 const usersReducer = (state = initialState, action: ActionsType) => {
 
     switch (action.type) {
-        case "FOLLOW":
+        case FOLLOW:
         return {...state,
             users: state.users.map(u=>u.id===action.userId ? {...u, followed: true} : u)}
-        case "UNFOLLOW":
+        case UNFOLLOW:
             return {...state,
                 users: state.users.map(u=>u.id===action.userId ? {...u, followed: false} : u)}
-        case "SET_USERS":
-            return {...state,
-                users: [...state.users, ...action.users]}
+        case SET_USERS:
+            return {...state, users: action.users}
+        case SET_CURRENT_PAGE:
+            return {...state, currentPage: action.currentPage}
+        case SET_USERS_TOTAL_COUNT:
+            return {...state, totalUsersCount: action.totalUsersCount}
 
         default:
             return state

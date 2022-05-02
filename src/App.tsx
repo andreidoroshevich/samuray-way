@@ -12,8 +12,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 
 
-
-const App = () => {
+const App = (props: any) => {
 
     return (
         <>
@@ -21,7 +20,7 @@ const App = () => {
             <div className={classes.main}>
                 <Navbar/>
                 <div className={classes.MainContent}>
-                    <Route path="/Dialogs" render={() => <DialogsContainer />}/>
+                    <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
                     <Route path="/Profile" render={() => <Profile/>}/>
                     <Route path="/Users" render={() => <UsersContainer/>}/>
                     <Route path="/News" render={() => <News/>}/>
@@ -31,8 +30,6 @@ const App = () => {
 
             </div>
         </>
-
-
     );
 
 
