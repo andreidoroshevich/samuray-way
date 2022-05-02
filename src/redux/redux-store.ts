@@ -43,3 +43,7 @@ export type RootState = ReturnType<typeof store.getState>
 
 
 export default store;
+
+
+// @ts-ignore
+window.store = store
