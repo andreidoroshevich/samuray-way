@@ -33,12 +33,12 @@ let initialState: InitialStateType = {
     isFetching: false,
 }
 
-type ActionsType = ReturnType<typeof followAC>
-    | ReturnType<typeof unfollowAC>
-    | ReturnType<typeof setUsersAC>
-    | ReturnType<typeof setCurrentPageAC>
-    | ReturnType<typeof setUsersTotalCountAC>
-    | ReturnType<typeof setIsFetchingAC>
+type ActionsType = ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setUsersTotalCount>
+    | ReturnType<typeof setIsFetching>
 
 export const FOLLOW = "FOLLOW";
 export const UNFOLLOW = "UNFOLLOW";
@@ -47,42 +47,42 @@ export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 export const SET_USERS_TOTAL_COUNT = "SET_USERS_TOTAL_COUNT";
 export const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
-export const followAC = (userId: number) => {
+export const follow = (userId: number) => {
     return {
         type: FOLLOW,
         userId: userId
     } as const
 }
 
-export const unfollowAC = (userId: number) => {
+export const unfollow = (userId: number) => {
     return {
         type: UNFOLLOW,
         userId: userId
     } as const
 }
 
-export const setUsersAC = (users: Array<UserType>) => {
+export const setUsers = (users: Array<UserType>) => {
     return {
         type: SET_USERS,
         users: users
     } as const
 }
 
-export const setCurrentPageAC = (currentPage: number) => {
+export const setCurrentPage = (currentPage: number) => {
     return {
         type: SET_CURRENT_PAGE,
         currentPage: currentPage
     } as const
 }
 
-export const setUsersTotalCountAC = (totalUsersCount: number) => {
+export const setUsersTotalCount = (totalUsersCount: number) => {
     return {
         type: SET_USERS_TOTAL_COUNT,
         totalUsersCount: totalUsersCount
     } as const
 }
 
-export const setIsFetchingAC = (isFetching: boolean) => {
+export const setIsFetching = (isFetching: boolean) => {
     return {
         type: TOGGLE_IS_FETCHING,
         isFetching: isFetching
