@@ -16,7 +16,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
 
             </div>
             <div>
-                <img src={props.profile.photos.large}/>
+                <img alt={'ava'} src={props.profile.photos.large}/>
                 <div>{props.profile.contacts.facebook}</div>
                 <div>{props.profile.contacts.vk}</div>
                 <div>{props.profile.contacts.twitter}</div>

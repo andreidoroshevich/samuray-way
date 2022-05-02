@@ -1,4 +1,3 @@
-import React from 'react';
 
 const UPDATE_NEW_DIALOGS_BODY = "UPDATE_NEW_DIALOGS_BODY";
 const SEND_DIALOG = "SEND_DIALOG";

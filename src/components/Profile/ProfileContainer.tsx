@@ -24,7 +24,7 @@ class ProfileContainer extends React.Component<any> {
         );
 
     }
-};
+}
 
 let mapStateToProps = (state:RootState) =>({
     profile:state.posts.profile
