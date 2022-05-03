@@ -1,8 +1,9 @@
 import React from 'react';
 import Preloader from "../common/preloader/Preloader";
+import {ProfileType} from "./ProfileContainer";
 
 export type ProfileInfoType = {
-    profile: any
+    profile: ProfileType
 }
 
 const ProfileInfo = (props: ProfileInfoType) => {
