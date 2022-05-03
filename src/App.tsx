@@ -12,7 +12,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
-const App = (props: any) => {
+const App = () => {
 
     return (
         <>
@@ -27,12 +27,9 @@ const App = (props: any) => {
                     <Route path="/Music" render={() => <Music/>}/>
                     <Route path="/Settings" render={() => <Settings/>}/>
                 </div>
-
             </div>
         </>
     );
-
-
 }
 
 

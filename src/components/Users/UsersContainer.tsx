@@ -11,7 +11,6 @@ import {
 } from "../../redux/users-reducer";
 import {RootState} from "../../redux/redux-store";
 // @ts-ignore
-import {Dispatch} from "redux";
 import axios from "axios";
 import Users from "./Users";
 import styles from "./users.module.css";
@@ -114,7 +113,7 @@ const mapStateToProps = (state: RootState) : MapStateToPropsType => {
 //     setIsFetching: setIsFetching
 // })(UsersContainer)
 
-export default connect(mapStateToProps, {
+export default connect<MapStateToPropsType, MapDispatchPropsType, {},  RootState>(mapStateToProps, {
     follow,
     unfollow,
     setUsers,

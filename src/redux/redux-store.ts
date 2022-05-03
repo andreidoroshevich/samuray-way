@@ -3,9 +3,6 @@ import postsReducer, {addPostActionCreator, updateNewPostTextCreator} from "./po
 import messagesReducer, {sendMessageCreator, updateMessageBodyCreator} from "./messages-reducer";
 import dialogsReducer, {sendDialogCreator, updateDialogBodyCreator} from "./dialogs-reducer";
 import usersReducer from "./users-reducer";
-import {PostPropsType} from "../components/Profile/MyPosts/Post/Post";
-import {DialogPropsType} from "../components/Dialogs/Dialog/Dialog";
-import {MessagePropsType} from "../components/Dialogs/Message/Message";
 
 export type ActionType = ReturnType<typeof updateNewPostTextCreator>
     | ReturnType<typeof addPostActionCreator>
@@ -13,21 +10,6 @@ export type ActionType = ReturnType<typeof updateNewPostTextCreator>
     | ReturnType<typeof sendMessageCreator>
     | ReturnType<typeof sendDialogCreator>
     | ReturnType<typeof updateDialogBodyCreator>
-
-export type statePropsType = {
-    posts: Array<PostPropsType>
-    dialogs: Array<DialogPropsType>
-    messages: Array<MessagePropsType>
-}
-
-
-export type StoreType = {
-    _state: statePropsType
-    _callsubscriber: () => void
-    subscribe: (callback: () => void) => void
-    getState: () => statePropsType
-}
-
 
 let reducers = combineReducers({
     posts: postsReducer,
@@ -39,7 +21,7 @@ let reducers = combineReducers({
 
 let store = createStore(reducers)
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof reducers>
 
 
 export default store;

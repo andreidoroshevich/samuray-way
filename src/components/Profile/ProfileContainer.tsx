@@ -31,11 +31,11 @@ export type ProfileType = {
     photos: PhotosType
 }
 
-export type MapStateType = {
+export type MapStateToPropsType = {
     profile: ProfileType
 }
 
-export type MapDispatchType = {
+export type MapDispatchToPropsType = {
     setUserProfile: (profile: ProfileType)=>void
 }
 
@@ -45,7 +45,7 @@ export type PathParamsType = {
 
 
 // @ts-ignore
-type PropsType = RouteComponentProps<PathParamsType> & MapDispatchType & MapStateType
+type PropsType = RouteComponentProps<PathParamsType> & MapDispatchToPropsType & MapStateToPropsType
 
 
 class ProfileContainer extends React.Component<PropsType> {
@@ -70,10 +70,10 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 }
 
-let mapStateToProps = (state:RootState) : MapStateType =>({
+let mapStateToProps = (state:RootState) : MapStateToPropsType =>({
     profile:state.posts.profile
 })
 
 const WithUrlDataContainerComponent = withRouter(ProfileContainer) //оборачиаем в контейнерный компонент
 
-export default connect (mapStateToProps, {setUserProfile}) (WithUrlDataContainerComponent);
+export default connect<MapStateToPropsType, MapDispatchToPropsType, {},  RootState>(mapStateToProps, {setUserProfile}) (WithUrlDataContainerComponent);

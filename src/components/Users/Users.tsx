@@ -17,8 +17,6 @@ export type UsersPropsType = {
 
 
 const Users = (props: UsersPropsType) => {
-
-    console.log(props.totalUsersCount)
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
@@ -50,7 +48,7 @@ const Users = (props: UsersPropsType) => {
                                 <td className={styles.photo}>
                                     <div>
                                         <NavLink to={'/profile/' + u.id}>
-                                        <img alt={'missing photo'} className={styles.userPhoto}
+                                        <img alt={'missing userPhoto'} className={styles.userPhoto}
                                              src={u.photos.small != null ? u.photos.small : userPhoto}/>
                                         </NavLink>
                                     </div>
