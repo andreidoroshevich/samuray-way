@@ -4,7 +4,7 @@ import styles from "./users.module.css";
 import userPhoto from "../../assets/images/user-profile.png";
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
+import {usersAPI} from "../../api/api";
 
 export type UsersPropsType = {
     users: Array<UserType>,
@@ -57,13 +57,14 @@ const Users = (props: UsersPropsType) => {
                                     {u.followed
                                         ? <button className={styles.button} onClick={() => {
 
-                                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                                withCredentials: true,
-                                                headers: {
-                                                    'API-KEY': '777d961a-f9a7-4dc0-b651-7f2e8df99fbe'
-                                                }
-                                            }).then(response => {
-                                                if (response.data.resultCode === 0) {
+                                            // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                            //     withCredentials: true,
+                                            //     headers: {
+                                            //         'API-KEY': '777d961a-f9a7-4dc0-b651-7f2e8df99fbe'
+                                            //     }
+                                            // })
+                                            usersAPI.unfollow(u.id).then(data => {
+                                                if (data.resultCode === 0) {
                                                     props.unfollow(u.id)
                                                 }
                                             })
@@ -71,13 +72,14 @@ const Users = (props: UsersPropsType) => {
                                         }}>Unfollow</button>
                                         : <button className={styles.button} onClick={() => {
 
-                                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                                withCredentials: true,
-                                                headers: {
-                                                    'API-KEY': '777d961a-f9a7-4dc0-b651-7f2e8df99fbe'
-                                                }
-                                            }).then(response => {
-                                                if (response.data.resultCode === 0) {
+                                            // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                                            //     withCredentials: true,
+                                            //     headers: {
+                                            //         'API-KEY': '777d961a-f9a7-4dc0-b651-7f2e8df99fbe'
+                                            //     }
+                                            // })
+                                            usersAPI.follow(u.id).then(data => {
+                                                if (data.resultCode === 0) {
                                                     props.follow(u.id)
                                                 }
                                             })

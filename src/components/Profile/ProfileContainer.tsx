@@ -1,10 +1,10 @@
 import React from 'react';
 import Profile from "./Profile";
-import axios from "axios";
 import {RootState} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import {setUserProfile} from "../../redux/posts-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
+import {profileAPI} from "../../api/api";
 
 export type ContactsType = {
     github: string
@@ -55,8 +55,10 @@ class ProfileContainer extends React.Component<PropsType> {
         if (!userId) {
             userId = 2
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
-            this.props.setUserProfile(response.data)
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
+
+        profileAPI.getUserProfile(userId).then(data => {
+            this.props.setUserProfile(data)
         })
     }
 
