@@ -7,7 +7,6 @@ import classes from './Header.module.css'
 // }
 
 const Header = ({...props}) => {
-    debugger
     return (
         <div className={classes.AppHeader}>
             <div className={classes.logoContainer}>
