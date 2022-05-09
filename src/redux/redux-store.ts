@@ -3,6 +3,7 @@ import postsReducer, {addPostActionCreator, updateNewPostTextCreator} from "./po
 import messagesReducer, {sendMessageCreator, updateMessageBodyCreator} from "./messages-reducer";
 import dialogsReducer, {sendDialogCreator, updateDialogBodyCreator} from "./dialogs-reducer";
 import usersReducer from "./users-reducer";
+import authReducer from "./auth-reducer";
 
 export type ActionType = ReturnType<typeof updateNewPostTextCreator>
     | ReturnType<typeof addPostActionCreator>
@@ -15,7 +16,8 @@ let reducers = combineReducers({
     posts: postsReducer,
     messages: messagesReducer,
     dialogs: dialogsReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 })
 
 
