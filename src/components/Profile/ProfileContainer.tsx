@@ -32,6 +32,7 @@ export type ProfileType = {
 
 export type MapStateToPropsType = {
     profile: ProfileType
+    isAuth: boolean
 }
 
 export type MapDispatchToPropsType = {
@@ -71,7 +72,8 @@ class ProfileContainer extends React.Component<PropsType> {
 }
 
 let mapStateToProps = (state: RootState): MapStateToPropsType => ({
-    profile: state.posts.profile
+    profile: state.posts.profile,
+    isAuth: state.auth.isAuth,
 })
 
 const WithUrlDataContainerComponent = withRouter(ProfileContainer) //оборачиаем в контейнерный компонент
