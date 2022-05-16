@@ -7,8 +7,6 @@ const instance = axios.create({
     headers: {
         'API-KEY': '777d961a-f9a7-4dc0-b651-7f2e8df99fbe'
     }
-
-
 })
 
 export const usersAPI = {
@@ -19,37 +17,36 @@ export const usersAPI = {
             })
     },
 
-    getLogin() {
-        return instance.get(`auth/me`)
-            .then(response => {
-                return response.data
-            })
-    },
-
-    unfollow(id: number) {
+    unfollowSuccess(id: number) {
         return instance.delete(`follow/${id}`)
             .then(response => {
                 return response.data
             })
     },
 
-    follow(id: number)  {
+    followSuccess(id: number)  {
         return instance.post(`follow/${id}`, {})
             .then(response => {
                 return response.data
             })
     },
-}
-
-export const profileAPI = {
     getUserProfile(userId: number)  {
-        return axios.get(`profile/` + userId)
+        return instance.get(`profile/` + userId)
             .then(response => {
                 return response.data
             })
     },
-
 }
+
+export const authAPI = {
+    getLogin() {
+        return instance.get(`auth/me`)
+            .then(response => {
+                return response.data
+            })
+    },
+}
+
 
 
 

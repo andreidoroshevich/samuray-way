@@ -1,4 +1,6 @@
 import {PostPropsType} from "../components/Profile/MyPosts/Post/Post";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -93,3 +95,11 @@ const postsReducer = (state = initialState, action: ActionsType) => {
 };
 
 export default postsReducer;
+
+export const getUserProfile = (userId: number) => {
+    return ((dispatch: Dispatch) => {
+        usersAPI.getUserProfile(userId).then(data => {
+            dispatch(setUserProfile(data))
+        })
+    })
+}
