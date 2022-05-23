@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-import classes from './components/Profile/Profile.module.css'
+import classes from './components/Profile/ProfileInfo/Profile.module.css'
 import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";

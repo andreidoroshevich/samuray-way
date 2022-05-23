@@ -1,11 +1,12 @@
 import React from 'react';
-import Preloader from "../common/preloader/Preloader";
-import {ProfileType} from "./ProfileContainer";
-import styles from "../Users/users.module.css";
-import s from "../Profile/Profile.module.css";
+import Preloader from "../../common/preloader/Preloader";
+import {ProfileType} from "../ProfileContainer";
+import styles from "../../Users/users.module.css";
+import s from "./Profile.module.css";
+import ProfileStatus from "../ProfileStatus";
 
 // @ts-ignore
-import userPhoto from "../../assets/images/user-profile.png";
+import userPhoto from "../../../assets/images/user-profile.png";
 
 export type ProfileInfoType = {
     profile: ProfileType
@@ -17,16 +18,18 @@ const ProfileInfo = (props: ProfileInfoType) => {
     } else
         return (
         <>
-            <div>
+            {/*<div>*/}
 
-                <img src='https://www.encyclopedie-environnement.org/app/uploads/2020/11/couv_nature.jpg' alt='Logo'/>
+            {/*    <img src='https://www.encyclopedie-environnement.org/app/uploads/2020/11/couv_nature.jpg' alt='Logo'/>*/}
 
-            </div>
-            <div>
+            {/*</div>*/}
+            <div className={s.profile}>
                 <img alt={'ava'} className={styles.userPhoto} src={props.profile.photos.large !==null
                 ? props.profile.photos.large
                     : userPhoto
                 }/>
+                <ProfileStatus status={"Hello my friend"}/>
+
                 <div className={s.userInfoBlock}>
                     <div> {props.profile.contacts.facebook}</div>
                     <div>{props.profile.contacts.vk}</div>

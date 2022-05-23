@@ -1,5 +1,5 @@
 import React from 'react';
-import Profile from "./Profile";
+import Profile from "./ProfileInfo/Profile";
 import {RootState} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router-dom";
