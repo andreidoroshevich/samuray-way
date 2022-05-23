@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {getUserProfile} from "../../redux/posts-reducer";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 export type ContactsType = {
     github: string
@@ -80,8 +81,13 @@ let mapStateToProps = (state: RootState): MapStateToPropsType => ({
 //     return <ProfileContainer {...props} />
 // }
 
+// const WithUrlDataContainerComponent = withRouter(ProfileContainer) //оборачиаем в контейнерный компонент
 
-const WithUrlDataContainerComponent = withRouter(ProfileContainer) //оборачиаем в контейнерный компонент
+// export default withAuthRedirect(connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootState>(mapStateToProps,
+//     {getUserProfile})(WithUrlDataContainerComponent));
 
-export default withAuthRedirect(connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootState>(mapStateToProps,
-    {getUserProfile})(WithUrlDataContainerComponent));
+export default compose<React.ComponentType>(
+    connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootState>(mapStateToProps,{getUserProfile}),
+    withRouter,
+    withAuthRedirect
+)(ProfileContainer)

@@ -12,6 +12,8 @@ import {RootState} from "../../redux/redux-store";
 import Users from "./Users";
 import styles from "./users.module.css";
 import Preloader from "../common/preloader/Preloader";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 export type MapDispatchPropsType = {
     follow: (userId: number) => void,
@@ -118,10 +120,21 @@ const mapStateToProps = (state: RootState) : MapStateToPropsType => {
 //     setIsFetching: setIsFetching
 // })(UsersContainer)
 
-export default connect<MapStateToPropsType, MapDispatchPropsType, {},  RootState>(mapStateToProps, {
-    follow,
-    unfollow,
-    setCurrentPage,
-    getUsers,
-    getOnPageChange,
-})(UsersContainer)
+// export default connect<MapStateToPropsType, MapDispatchPropsType, {},  RootState>(mapStateToProps, {
+//     follow,
+//     unfollow,
+//     setCurrentPage,
+//     getUsers,
+//     getOnPageChange,
+// })(UsersContainer)
+
+export default compose<React.ComponentType>(
+    connect<MapStateToPropsType, MapDispatchPropsType, {},  RootState>(mapStateToProps, {
+        follow,
+        unfollow,
+        setCurrentPage,
+        getUsers,
+        getOnPageChange,
+    }),
+        withAuthRedirect
+)(UsersContainer)
