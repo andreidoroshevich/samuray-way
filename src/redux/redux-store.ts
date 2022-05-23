@@ -5,6 +5,7 @@ import dialogsReducer, {sendDialogCreator, updateDialogBodyCreator} from "./dial
 import usersReducer from "./users-reducer";
 import authReducer from "./auth-reducer";
 import thunkMiddleware from "redux-thunk";
+import {reducer as formReducer} from "redux-form"
 
 
 export type ActionType = ReturnType<typeof updateNewPostTextCreator>
@@ -19,7 +20,8 @@ let reducer = combineReducers({
     messages: messagesReducer,
     dialogs: dialogsReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer,
 })
 
 let store = createStore(reducer, applyMiddleware(thunkMiddleware))
