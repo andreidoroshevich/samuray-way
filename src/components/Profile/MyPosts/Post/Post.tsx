@@ -15,7 +15,7 @@ const Post = (props: PostPropsType) => {
         <div className={classes.MainContent}>
 
                 <div className={classes.item}>
-                    <img src={props.avatar}/>
+                    <img alt={'avatar'} src={props.avatar}/>
                     {props.message}
                     <div>like {props.likeQuantity}</div>
                 </div>

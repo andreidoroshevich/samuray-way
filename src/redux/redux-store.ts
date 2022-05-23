@@ -14,7 +14,7 @@ export type ActionType = ReturnType<typeof updateNewPostTextCreator>
     | ReturnType<typeof sendDialogCreator>
     | ReturnType<typeof updateDialogBodyCreator>
 
-let reducers = combineReducers({
+let reducer = combineReducers({
     posts: postsReducer,
     messages: messagesReducer,
     dialogs: dialogsReducer,
@@ -22,9 +22,9 @@ let reducers = combineReducers({
     auth: authReducer
 })
 
-let store = createStore(reducers, applyMiddleware(thunkMiddleware))
+let store = createStore(reducer, applyMiddleware(thunkMiddleware))
 
-export type RootState = ReturnType<typeof reducers>
+export type RootState = ReturnType<typeof reducer>
 
 
 export default store;

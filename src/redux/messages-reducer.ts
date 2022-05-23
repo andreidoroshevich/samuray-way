@@ -1,5 +1,3 @@
-import React from 'react';
-
 let initialState = {
         messages: [
             {id: 1, message: 'Hi'},
