@@ -2,7 +2,6 @@ import React, {ChangeEvent} from 'react';
 import classes from './Dialogs.module.css';
 import Dialog, {DialogPropsType} from "./Dialog/Dialog";
 import Message, {MessagePropsType} from "./Message/Message";
-import {Redirect} from "react-router-dom";
 
 
 type DialogsPropsType = {

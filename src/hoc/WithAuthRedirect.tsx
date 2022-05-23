@@ -22,7 +22,5 @@ const RedirectComponent = (props:mapStateToPropsType)=>{
     return <Component {...restProps as T}/>
 
     }
-
-    const ConnectedRedirectComponent = connect(mapStateToProps)(RedirectComponent)
-    return ConnectedRedirectComponent
+    return connect(mapStateToProps)(RedirectComponent)
 }
