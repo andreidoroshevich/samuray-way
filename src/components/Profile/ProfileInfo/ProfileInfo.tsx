@@ -10,6 +10,8 @@ import userPhoto from "../../../assets/images/user-profile.png";
 
 export type ProfileInfoType = {
     profile: ProfileType
+    status: string
+    updateStatus: (status: string) => void
 }
 
 const ProfileInfo = (props: ProfileInfoType) => {
@@ -28,7 +30,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
                 ? props.profile.photos.large
                     : userPhoto
                 }/>
-                <ProfileStatus status={"Hello my friend"}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
 
                 <div className={s.userInfoBlock}>
                     <div> {props.profile.contacts.facebook}</div>

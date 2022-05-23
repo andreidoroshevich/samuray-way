@@ -30,7 +30,7 @@ const Users = (props: UsersPropsType) => {
             {/*show only 6 pages from server*/}
             <div className={styles.pages}>
                 {pages.reduce((acc, p, index) => {
-                    if (index > 5) return acc
+                    if (index > 10) return acc
                     acc.push(<span className={`${props.currentPage === p && styles.selectedPage} ${styles.span}`}
                                    onClick={() => {
                                        props.onPageChanged(p)
