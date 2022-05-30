@@ -52,8 +52,6 @@ export const profileAPI = {
                 return response.data
             })
     },
-
-
 }
 
 export const authAPI = {

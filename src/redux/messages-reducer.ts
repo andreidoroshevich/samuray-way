@@ -6,7 +6,6 @@ let initialState = {
             {id: 4, message: 'How are you?'},
             {id: 5, message: 'Yo'},
         ],
-        newMessageBody: '',
 }
 
 type ActionsType = ReturnType<typeof updateMessageBodyCreator> | ReturnType<typeof sendMessageCreator>
@@ -21,9 +20,10 @@ export const updateMessageBodyCreator = (body: string) => {
     } as const
 }
 
-export const sendMessageCreator = () => {
+export const sendMessageCreator = (newMessageBody: string) => {
     return {
         type: SEND_MESSAGE,
+        newMessageBody
     } as const
 }
 
@@ -37,10 +37,9 @@ const messagesReducer = (state = initialState, action: ActionsType) => {
             newMessageBody: action.body
         }
     } else if (action.type === SEND_MESSAGE) {
-        let body = state.newMessageBody
+        let body = action.newMessageBody
         return {
             ...state,
-            newMessageBody: '',
             messages: [...state.messages, {id: 10, message: body}]
         }
     }

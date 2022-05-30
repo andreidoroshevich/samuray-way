@@ -82,17 +82,6 @@ let mapStateToProps = (state: RootState): MapStateToPropsType => ({
 
 })
 
-
-// const AuthRedirectComponent = (props: any)=>{
-//     if (!props.isAuth) return <Redirect to={'/Login'}/>
-//     return <ProfileContainer {...props} />
-// }
-
-// const WithUrlDataContainerComponent = withRouter(ProfileContainer) //оборачиаем в контейнерный компонент
-
-// export default withAuthRedirect(connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootState>(mapStateToProps,
-//     {getUserProfile})(WithUrlDataContainerComponent));
-
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
     withRouter,

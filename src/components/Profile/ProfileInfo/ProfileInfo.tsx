@@ -20,11 +20,6 @@ const ProfileInfo = (props: ProfileInfoType) => {
     } else
         return (
         <>
-            {/*<div>*/}
-
-            {/*    <img src='https://www.encyclopedie-environnement.org/app/uploads/2020/11/couv_nature.jpg' alt='Logo'/>*/}
-
-            {/*</div>*/}
             <div className={s.profile}>
                 <img alt={'ava'} className={styles.userPhoto} src={props.profile.photos.large !==null
                 ? props.profile.photos.large

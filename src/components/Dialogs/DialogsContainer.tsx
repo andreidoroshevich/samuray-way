@@ -12,20 +12,20 @@ import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 type MapDialogsDispatchPropsType = {
     updateNewMessageBody: (body: string)=>void,
-    sendMessage: ()=>void
+    sendMessage: (newMessageBody: string)=>void
 }
 
 type MapStateToPropsType = {
     dialogs: Array<DialogPropsType>
     messages: Array<MessagePropsType>
-    newDialogBody: string
+    // newDialogBody: string
 }
 
 const mapStateToProps = (state: RootState)=>{
     return {
         dialogs: state.dialogs.dialogs,
         messages: state.messages.messages,
-        newDialogBody: state.messages.newMessageBody,
+        // newDialogBody: state.messages.newMessageBody,
     }
 }
 
@@ -34,8 +34,8 @@ const mapDispatchToProps = (dispatch: Dispatch):MapDialogsDispatchPropsType=>{
         updateNewMessageBody: (body: string)=>{
             dispatch(updateMessageBodyCreator(body))
         },
-        sendMessage: ()=>{
-            dispatch(sendMessageCreator())
+        sendMessage: (newMessageBody: string)=>{
+            dispatch(sendMessageCreator(newMessageBody))
 
         }
     }

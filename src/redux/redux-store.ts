@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import postsReducer, {addPostActionCreator, updateNewPostTextCreator} from "./posts-reducer";
-import messagesReducer, {sendMessageCreator, updateMessageBodyCreator} from "./messages-reducer";
+import postsReducer, {addPostActionCreator} from "./posts-reducer";
+import messagesReducer, {sendMessageCreator} from "./messages-reducer";
 import dialogsReducer, {sendDialogCreator, updateDialogBodyCreator} from "./dialogs-reducer";
 import usersReducer from "./users-reducer";
 import authReducer from "./auth-reducer";
@@ -8,9 +8,7 @@ import thunkMiddleware from "redux-thunk";
 import {reducer as formReducer} from "redux-form"
 
 
-export type ActionType = ReturnType<typeof updateNewPostTextCreator>
-    | ReturnType<typeof addPostActionCreator>
-    | ReturnType<typeof updateMessageBodyCreator>
+export type ActionType = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof sendMessageCreator>
     | ReturnType<typeof sendDialogCreator>
     | ReturnType<typeof updateDialogBodyCreator>
