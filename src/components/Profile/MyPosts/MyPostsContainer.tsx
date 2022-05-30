@@ -9,18 +9,15 @@ import {connect} from "react-redux";
 
 export type MapPostsDispatchPropsType = {
     addPost: (newPostText: string)=>void,
-    // updateNewPostText: (text: string)=>void
 }
 
 export type MapStateToPropsType = {
     posts: Array<PostPropsType>,
-    // newPostText: string
 }
 
 const mapStateToProps = (state: RootState)=>{
     return {
         posts: state.posts.posts,
-        // newPostText: state.posts.newPostText
     }
 }
 
@@ -29,10 +26,6 @@ const mapDispatchToProps = (dispatch: Dispatch):MapPostsDispatchPropsType=>{
         addPost: (newPostText: string)=>{
             dispatch(addPostActionCreator(newPostText))
         },
-    // updateNewPostText: (text: string)=>{
-    //     dispatch(updateNewPostTextCreator(text))
-    //
-    //     }
     }
 }
 

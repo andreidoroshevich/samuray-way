@@ -7,8 +7,6 @@ import {AddNewPostForm} from "./AddNewPostForm";
 
 type MyPostsPropsType = {
     posts: Array<PostPropsType>
-    // newPostText: string
-    // updateNewPostText: (text:string)=>void
     addPost: (newPostText: string) => void
     dispatch?: (action: ActionType) => void
 }
