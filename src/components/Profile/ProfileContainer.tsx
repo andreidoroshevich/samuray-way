@@ -61,9 +61,6 @@ class ProfileContainer extends React.Component<PropsType> {
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
-        // usersAPI.getUserProfile(userId).then(data => {
-        //     this.props.setUserProfile(data)
-        // })
     }
 
     render() {

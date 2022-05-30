@@ -4,7 +4,7 @@ import messagesReducer, {sendMessageCreator} from "./messages-reducer";
 import dialogsReducer, {sendDialogCreator, updateDialogBodyCreator} from "./dialogs-reducer";
 import usersReducer from "./users-reducer";
 import authReducer from "./auth-reducer";
-import thunkMiddleware from "redux-thunk";
+import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {reducer as formReducer} from "redux-form"
 
 
@@ -25,6 +25,7 @@ let reducer = combineReducers({
 let store = createStore(reducer, applyMiddleware(thunkMiddleware))
 
 export type RootState = ReturnType<typeof reducer>
+export type ThunkType = ThunkAction<void, RootState, unknown, ActionType>
 
 
 export default store;

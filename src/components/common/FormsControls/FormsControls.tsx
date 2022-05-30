@@ -16,18 +16,18 @@ const FormControl: React.FC<WrappedFieldProps> = ({meta, children})=>{
     )
 }
 
-export const Textarea: React.FC<WrappedFieldProps> = ({input, meta}) => {
+export const Textarea: React.FC<WrappedFieldProps> = ({input, meta, ...restProps}) => {
     return (
         <FormControl input={input} meta={meta}>
-            <textarea {...input}/>
+            <textarea {...input} {...restProps}/>
         </FormControl>
     )
 }
 
-    export const Input: React.FC<WrappedFieldProps> = ({input, meta}) =>{
+    export const Input: React.FC<WrappedFieldProps> = ({input, meta, ...restProps}) =>{
         return (
             <FormControl input={input} meta={meta}>
-                <input {...input}/>
+                <input {...input} {...restProps}/>
             </FormControl>
         )
     }
