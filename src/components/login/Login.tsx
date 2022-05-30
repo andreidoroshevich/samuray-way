@@ -22,16 +22,20 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 <Field placeholder={"Login"} name={'email'} component={Input} validate={[required]}/>
             </div>
             <div>
-                <Field placeholder={"Password"} type={'password'} name={'password'} component={Input} validate={[required]}/>
+                <Field placeholder={"Password"} type={'password'} name={'password'} component={Input}
+                       validate={[required]}/>
             </div>
             <div className={s.checkText}>
                 <Field type={"checkbox"} name={'rememberMe'} component={"input"}/> remember me
             </div>
+            {props.error && <div className={s.formSummaryError}>
+                {props.error}
+            </div>}
+
             <div>
                 <button>Login</button>
             </div>
         </form>
-
     )
 }
 
@@ -52,7 +56,7 @@ const Login = ({...props}) => {
     )
 }
 
-const mapStateToProps = (state: RootState)=>({
+const mapStateToProps = (state: RootState) => ({
     isAuth: state.auth.isAuth
 
 })

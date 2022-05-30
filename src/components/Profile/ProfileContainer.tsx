@@ -24,7 +24,7 @@ export type PhotosType = {
 }
 
 export type ProfileType = {
-    userId: number
+    userId: number | null
     status: string
     lookingForAJob: boolean
     lookingForAJobDescription: string
@@ -36,16 +36,18 @@ export type ProfileType = {
 export type MapStateToPropsType = {
     profile: ProfileType
     status: string
+    authorizedUserId: number | null
+    isAuth: boolean
 }
 
 export type MapDispatchToPropsType = {
-    getUserProfile: (userId: number) => void
-    getStatus: (userId: number) => void
+    getUserProfile: (userId: number | null) => void
+    getStatus: (userId: number | null) => void
     updateStatus: (status: string) => void
 }
 
 export type PathParamsType = {
-    userId: number
+    userId: number | null
 }
 
 // @ts-ignore
@@ -57,7 +59,7 @@ class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = 23481
+            userId = this.props.authorizedUserId
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
@@ -75,7 +77,10 @@ class ProfileContainer extends React.Component<PropsType> {
 
 let mapStateToProps = (state: RootState): MapStateToPropsType => ({
     profile: state.posts.profile,
-    status: state.posts.status
+    status: state.posts.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
+
 
 })
 
