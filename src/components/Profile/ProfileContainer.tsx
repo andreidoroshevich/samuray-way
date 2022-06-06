@@ -6,6 +6,7 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 import {getStatus, getUserProfile, updateStatus} from "../../redux/posts-reducer";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {getIsAuth, getProfile, getStateStatus, getUserId} from "../../redux/profile-selectors";
 
 export type ContactsType = {
     github: string
@@ -79,13 +80,18 @@ class ProfileContainer extends React.Component<PropsType> {
 }
 
 let mapStateToProps = (state: RootState): MapStateToPropsType => ({
-    profile: state.posts.profile,
-    status: state.posts.status,
-    authorizedUserId: state.auth.userId,
-    isAuth: state.auth.isAuth
-
-
+    profile: getProfile(state),
+    status: getStateStatus(state),
+    authorizedUserId: getUserId(state),
+    isAuth: getIsAuth(state)
 })
+
+// let mapStateToProps = (state: RootState): MapStateToPropsType => ({
+//     profile: state.posts.profile,
+//     status: state.posts.status,
+//     authorizedUserId: state.auth.userId,
+//     isAuth: state.auth.isAuth
+// })
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),

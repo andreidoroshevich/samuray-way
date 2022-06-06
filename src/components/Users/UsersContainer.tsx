@@ -13,7 +13,12 @@ import Users from "./Users";
 import styles from "./users.module.css";
 import Preloader from "../common/preloader/Preloader";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {
+    getCurrentPage, getFollowingInProgress,
+    getIsFetching, getPageSize,
+    getTotalUsersCount,
+    requestUsers
+} from "../../redux/users-selectors";
 
 export type MapDispatchPropsType = {
     follow: (userId: number) => void,
@@ -75,17 +80,29 @@ class UsersContainer extends React.Component<MapStateToPropsType & MapDispatchPr
     }
 }
 
-
 const mapStateToProps = (state: RootState) : MapStateToPropsType => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: requestUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
+
+
+
+// const mapStateToProps = (state: RootState) : MapStateToPropsType => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         followingInProgress: state.usersPage.followingInProgress
+//     }
+// }
 
 // const mapDispatchToProps = (dispatch: Dispatch) : MapDispatchPropsType=>{
 //     return {
