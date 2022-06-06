@@ -8,7 +8,7 @@ let initialState = {
         ],
 }
 
-type ActionsType = ReturnType<typeof updateMessageBodyCreator> | ReturnType<typeof sendMessageCreator>
+export type MessagesActionsType = ReturnType<typeof updateMessageBodyCreator> | ReturnType<typeof sendMessageCreator>
 
 export const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY";
 export const SEND_MESSAGE = "SEND_MESSAGE";
@@ -29,7 +29,7 @@ export const sendMessageCreator = (newMessageBody: string) => {
 
 
 
-const messagesReducer = (state = initialState, action: ActionsType) => {
+const messagesReducer = (state = initialState, action: MessagesActionsType) => {
 
     if (action.type === UPDATE_NEW_MESSAGE_BODY) {
         return {

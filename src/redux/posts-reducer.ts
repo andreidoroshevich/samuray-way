@@ -33,7 +33,7 @@ let initialState = {
     status: ""
 }
 
-type ActionsType = ReturnType<typeof addPostActionCreator>
+export type PostActionsType = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setUserStatus>
 
@@ -59,7 +59,7 @@ export const setUserStatus = (status: string) => {
     } as const
 }
 
-const postsReducer = (state = initialState, action: ActionsType) => {
+const postsReducer = (state = initialState, action: PostActionsType) => {
 
     switch (action.type) {
         case ADD_POST: {

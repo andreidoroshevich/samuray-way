@@ -135,6 +135,4 @@ export default compose<React.ComponentType>(
         setCurrentPage,
         getUsers,
         getOnPageChange,
-    }),
-        withAuthRedirect
-)(UsersContainer)
+    }))(UsersContainer)

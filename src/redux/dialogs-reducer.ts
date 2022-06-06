@@ -14,7 +14,7 @@ let initialState = {
         newDialogBody: '',
     }
 
-type ActionsType = ReturnType<typeof sendDialogCreator> | ReturnType<typeof updateDialogBodyCreator>
+export type DialogsActionsType = ReturnType<typeof sendDialogCreator> | ReturnType<typeof updateDialogBodyCreator>
 
 export const updateDialogBodyCreator = (body: string) => {
     return {
@@ -30,7 +30,7 @@ export const sendDialogCreator = () => {
 }
 
 
-const dialogsReducer = (state = initialState, action: ActionsType) => {
+const dialogsReducer = (state = initialState, action: DialogsActionsType) => {
     if (action.type === UPDATE_NEW_DIALOGS_BODY) {
         const copyState = {...state}
         copyState.newDialogBody = action.body

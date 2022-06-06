@@ -17,7 +17,7 @@ let initialState: InitialStateType = {
     isAuth: false
 }
 
-type ActionsType = ReturnType<typeof setAuthUserData>
+export type AuthActionsType = ReturnType<typeof setAuthUserData>
 
 export const SET_USER_DATA = "SET_USER_DATA";
 
@@ -35,7 +35,7 @@ export const setAuthUserData = (userId: number | null, email: string | null, log
 }
 
 
-const authReducer = (state = initialState, action: ActionsType) => {
+const authReducer = (state = initialState, action: AuthActionsType) => {
 
     switch (action.type) {
         case SET_USER_DATA:
@@ -52,7 +52,7 @@ export default authReducer;
 
 export const getAuthUserData = () => {
     return ((dispatch: Dispatch) => {
-        authAPI.getLogin().then(data => {
+       return authAPI.getLogin().then(data => {
             if (data.resultCode === 0) {
                 const {id, email, login} = data.data
                 dispatch(setAuthUserData(id, email, login, true))

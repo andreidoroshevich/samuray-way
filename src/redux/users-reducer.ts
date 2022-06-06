@@ -38,7 +38,7 @@ let initialState: InitialStateType = {
     followingInProgress: false,
 }
 
-type ActionsType = ReturnType<typeof followSuccess>
+export type UsersActionsType = ReturnType<typeof followSuccess>
     | ReturnType<typeof unfollowSuccess>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCurrentPage>
@@ -103,7 +103,7 @@ export const toggleFollowingProgress = (followingInProgress: boolean) => {
     } as const
 }
 
-const usersReducer = (state = initialState, action: ActionsType) => {
+const usersReducer = (state = initialState, action: UsersActionsType) => {
 
     switch (action.type) {
         case FOLLOW:
