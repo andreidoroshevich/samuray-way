@@ -3,10 +3,10 @@ import Preloader from "../../common/preloader/Preloader";
 import {ProfileType} from "../ProfileContainer";
 import styles from "../../Users/users.module.css";
 import s from "./Profile.module.css";
-import ProfileStatus from "../ProfileStatus";
 
 // @ts-ignore
 import userPhoto from "../../../assets/images/user-profile.png";
+import {ProfileStatusWithHooks} from "../ProfileStatusWithHooks";
 
 export type ProfileInfoType = {
     profile: ProfileType
@@ -25,7 +25,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
                 ? props.profile.photos.large
                     : userPhoto
                 }/>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
 
                 <div className={s.userInfoBlock}>
                     <div> {props.profile.contacts.facebook}</div>

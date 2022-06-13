@@ -22,25 +22,25 @@ class ProfileStatus extends React.Component<PropsType> {
         })
     }
 
-    deactivateMode =() => {
+    deactivateMode = () => {
         this.setState({
             editMode: false
         })
         this.props.updateStatus(this.state.status)
     }
 
-    onStatusChange = (e:ChangeEvent<HTMLInputElement>) => {
+    onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({
             status: e.currentTarget.value
         })
     }
 
     componentDidUpdate(prevProps: PropsType, PrevState: localEditStateType) {
-if(prevProps.status !== this.props.status) {
-    this.setState({
-        status: this.props.status
-    })
-}
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
     }
 
     render() {
@@ -48,7 +48,8 @@ if(prevProps.status !== this.props.status) {
             <>
                 {!this.state.editMode
                     ? <div><span onDoubleClick={this.activateMode}>{this.props.status}</span></div>
-                    : <div><input onChange={this.onStatusChange} autoFocus onBlur={this.deactivateMode} value={this.state.status}/></div>
+                    : <div><input onChange={this.onStatusChange} autoFocus onBlur={this.deactivateMode}
+                                  value={this.state.status}/></div>
                 }
 
             </>
