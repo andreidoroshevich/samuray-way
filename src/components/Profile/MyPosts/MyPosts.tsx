@@ -11,6 +11,10 @@ type MyPostsPropsType = {
     dispatch?: (action: ActionType) => void
 }
 
+type ValuesType = {
+    newPostText: string
+}
+
 
 const MyPosts = React.memo((props: MyPostsPropsType) => {
 
