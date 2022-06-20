@@ -2,10 +2,10 @@ import {PostPropsType} from "../components/Profile/MyPosts/Post/Post";
 import {Dispatch} from "redux";
 import {profileAPI} from "../api/api";
 
-const ADD_POST = "ADD-POST";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_USER_STATUS = "SET_USER_STATUS";
-const DELETE_POST = "DELETE_POST";
+const ADD_POST = "samurai-network/post/ADD-POST";
+const SET_USER_PROFILE = "samurai-network/post/SET_USER_PROFILE";
+const SET_USER_STATUS = "samurai-network/post/SET_USER_STATUS";
+const DELETE_POST = "samurai-network/post/DELETE_POST";
 
 let initialState = {
     posts: [
@@ -113,28 +113,19 @@ const postsReducer = (state = initialState, action: PostActionsType) => {
 
 export default postsReducer;
 
-export const getUserProfile = (userId: number) => {
-    return ((dispatch: Dispatch) => {
-        profileAPI.getUserProfile(userId).then(data => {
-            dispatch(setUserProfile(data))
-        })
-    })
+export const getUserProfile = (userId: number) => async (dispatch: Dispatch) => {
+    const data = await profileAPI.getUserProfile(userId)
+    dispatch(setUserProfile(data))
 }
 
-export const getStatus = (userId: number) => {
-    return ((dispatch: Dispatch) => {
-        profileAPI.getStatus(userId).then(data => {
-            dispatch(setUserStatus(data))
-        })
-    })
+export const getStatus = (userId: number) => async (dispatch: Dispatch) => {
+    const data = await profileAPI.getStatus(userId)
+    dispatch(setUserStatus(data))
 }
 
-export const updateStatus = (status: string) => {
-    return ((dispatch: Dispatch) => {
-        profileAPI.updateStatus(status).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setUserStatus(status))
-            }
-        })
-    })
+export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
+    const data = await profileAPI.updateStatus(status)
+    if (data.resultCode === 0) {
+        dispatch(setUserStatus(status))
+    }
 }

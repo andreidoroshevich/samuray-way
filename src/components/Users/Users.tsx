@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./users.module.css";
 // @ts-ignore
 import userPhoto from "../../assets/images/user-profile.png";
 import {UserType} from "../../redux/users-reducer";
-import {NavLink} from "react-router-dom";
+import Paginator from "../common/Paginator/Paginator";
+import User from "./User";
 
 export type UsersPropsType = {
     users: Array<UserType>,
@@ -18,63 +18,20 @@ export type UsersPropsType = {
 
 
 const Users = (props: UsersPropsType) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = []
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
-
     return (
-
         <div>
-            {/*show only needed quantity of pages from server*/}
-            <div className={styles.pages}>
-                {pages.reduce((acc, p, index) => {
-                    if (index > 20) return acc
-                    acc.push(<span className={`${props.currentPage === p && styles.selectedPage} ${styles.span}`}
-                                   onClick={() => {
-                                       props.onPageChanged(p)
-                                   }}>{p}
-                </span>)
-                    return acc
-                }, [] as JSX.Element[])}
-            </div>
-
-
+            <Paginator currentPage={props.currentPage}
+                       onPageChanged={props.onPageChanged}
+                       pageSize={props.pageSize}
+                       totalUsersCount={props.totalUsersCount}
+            />
             {
-                props.users.map(u => <div key={u.id}>
-                        <table className={styles.table}>
-                            <tbody>
-                            <tr className={styles.tr}>
-                                <td className={styles.photo}>
-                                    <div>
-                                        <NavLink to={'/profile/' + u.id}>
-                                            <img alt={'missing userPhoto'} className={styles.userPhoto}
-                                                 src={u.photos.small != null ? u.photos.small : userPhoto}/>
-                                        </NavLink>
-                                    </div>
-                                    <div>
-                                        {u.followed
-                                            ? <button disabled={props.followingInProgress} className={styles.button}
-                                                      onClick={() => {props.unfollow(u.id)}}>Unfollow</button>
-                                            : <button disabled={props.followingInProgress} className={styles.button}
-                                                      onClick={() => {props.follow(u.id)}}>Follow</button>}
-                                    </div>
-                                </td>
-                                <td className={styles.name}>
-                                    <div>
-                                        <div className={styles.marginBottom}>{u.name}</div>
-                                        <div className={styles.status}>{u.status}</div>
-                                    </div>
-                                    <div>
-                                        <div className={styles.marginBottom}>{'u.location.country'}</div>
-                                        <div>{'u.location.city'}</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                props.users.map(u =>
+                    <User user={u}
+                          follow={props.follow}
+                          unfollow={props.unfollow}
+                          followingInProgress={props.followingInProgress}
+                    />
                 )
             }
         </div>

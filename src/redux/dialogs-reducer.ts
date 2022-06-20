@@ -1,6 +1,6 @@
 
-const UPDATE_NEW_DIALOGS_BODY = "UPDATE_NEW_DIALOGS_BODY";
-const SEND_DIALOG = "SEND_DIALOG";
+const UPDATE_NEW_DIALOGS_BODY = "samurai-network/dialogs/UPDATE_NEW_DIALOGS_BODY";
+const SEND_DIALOG = "samurai-network/dialogs/SEND_DIALOG";
 
 let initialState = {
         dialogs: [

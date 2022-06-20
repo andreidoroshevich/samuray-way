@@ -14,7 +14,7 @@ let initialState: InitialStateType = {
 
 type ActionsType = ReturnType<typeof initializedSuccess>
 
-export const SET_INITIALIZED = "SET_INITIALIZED";
+export const SET_INITIALIZED = "samurai-network/app/SET_INITIALIZED";
 
 
 export const initializedSuccess = () => {

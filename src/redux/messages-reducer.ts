@@ -10,8 +10,8 @@ let initialState = {
 
 export type MessagesActionsType = ReturnType<typeof updateMessageBodyCreator> | ReturnType<typeof sendMessageCreator>
 
-export const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY";
-export const SEND_MESSAGE = "SEND_MESSAGE";
+export const UPDATE_NEW_MESSAGE_BODY = "samurai-network/message/UPDATE_NEW_MESSAGE_BODY";
+export const SEND_MESSAGE = "samurai-network/message/SEND_MESSAGE";
 
 export const updateMessageBodyCreator = (body: string) => {
     return {

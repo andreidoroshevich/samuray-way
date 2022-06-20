@@ -13,7 +13,6 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/login/Login";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {getAuthUserData, logout} from "./redux/auth-reducer";
 import {initializeApp} from "./redux/app-reducer";
 import {RootState} from "./redux/redux-store";
 import Preloader from "./components/common/preloader/Preloader";
@@ -62,8 +61,6 @@ class App extends Component<MapDispatchToPropsType & MapStateToPropsType> {
         );
     }
 }
-
-
 export default compose<React.ComponentType>(
     withRouter,
     connect(MapStateToProps, {initializeApp}))(App)

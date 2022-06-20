@@ -27,8 +27,6 @@ beforeEach(()=>{
     }
 })
 
-
-
 test('new post should be added',()=>{
     const action = addPostActionCreator('Test Reducer Post')
     const newState=postsReducer(state,action)

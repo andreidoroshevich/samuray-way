@@ -46,13 +46,13 @@ export type UsersActionsType = ReturnType<typeof followSuccess>
     | ReturnType<typeof setIsFetching>
     | ReturnType<typeof toggleFollowingProgress>
 
-export const FOLLOW = "FOLLOW";
-export const UNFOLLOW = "UNFOLLOW";
-export const SET_USERS = "SET_USERS";
-export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-export const SET_USERS_TOTAL_COUNT = "SET_USERS_TOTAL_COUNT";
-export const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-export const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
+export const FOLLOW = "samurai-network/users/FOLLOW";
+export const UNFOLLOW = "samurai-network/users/UNFOLLOW";
+export const SET_USERS = "samurai-network/users/SET_USERS";
+export const SET_CURRENT_PAGE = "samurai-network/users/SET_CURRENT_PAGE";
+export const SET_USERS_TOTAL_COUNT = "samurai-network/users/SET_USERS_TOTAL_COUNT";
+export const TOGGLE_IS_FETCHING = "samurai-network/users/TOGGLE_IS_FETCHING";
+export const TOGGLE_IS_FOLLOWING_PROGRESS = "samurai-network/users/TOGGLE_IS_FOLLOWING_PROGRESS";
 
 export const followSuccess = (userId: number) => {
     return {
@@ -133,57 +133,47 @@ const usersReducer = (state = initialState, action: UsersActionsType) => {
 }
 
 //ThunkCreator
-export const getUsers = (currentPage: number, pageSize: number) => {
-    return ((dispatch: Dispatch) => {
-
-        dispatch(setIsFetching(true))
-
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
-            dispatch(setIsFetching(false))
-            dispatch(setUsers(data.items))
-            dispatch(setUsersTotalCount(data.totalCount))
-        })
-    })
+export const getUsers = (currentPage: number, pageSize: number) => async (dispatch: Dispatch) => {
+    dispatch(setIsFetching(true))
+    const data = await usersAPI.getUsers(currentPage, pageSize)
+    dispatch(setIsFetching(false))
+    dispatch(setUsers(data.items))
+    dispatch(setUsersTotalCount(data.totalCount))
 }
 
 //ThunkCreator
-export const getOnPageChange = (pageNumber: number, pageSize: number) => {
-    return ((dispatch: Dispatch) => {
-
-        dispatch(setCurrentPage(pageNumber))
-       dispatch(setIsFetching(true))
-        usersAPI.getUsers(pageNumber, pageSize).then(data => {
-            dispatch(setIsFetching(false))
-            dispatch(setUsers(data.items))
-        })
-    })
+export const getOnPageChange = (pageNumber: number, pageSize: number) => async (dispatch: Dispatch) => {
+    dispatch(setCurrentPage(pageNumber))
+    dispatch(setIsFetching(true))
+    const data = await usersAPI.getUsers(pageNumber, pageSize)
+    dispatch(setIsFetching(false))
+    dispatch(setUsers(data.items))
 }
+
+const followUnfollowFlow = async (dispatch: Dispatch, id:number, apiMethod: any, actionCreator: any ) => {
+    dispatch(toggleFollowingProgress(true))
+    const data = await apiMethod(id)
+    if (data.resultCode === 0) {
+        dispatch(actionCreator(id))
+    }
+    dispatch(toggleFollowingProgress(false))
+}
+
+
 
 //ThunkCreator
-export const unfollow = (id: number) => {
-    return ((dispatch: Dispatch) => {
-        dispatch(toggleFollowingProgress(true))
-        usersAPI.unfollowSuccess(id).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(unfollowSuccess(id))
-            }
-            dispatch(toggleFollowingProgress(false))
-        })
-    })
+export const unfollow = (id: number) =>{
+    return (dispatch: Dispatch) => {
+        const apiMethod = usersAPI.unfollowSuccess.bind(usersAPI)
+        const actionCreator = unfollowSuccess
+        followUnfollowFlow(dispatch, id, apiMethod, actionCreator)
+    }
 }
 
-export const follow = (id: number) => {
-    return ((dispatch: Dispatch) => {
-        dispatch(toggleFollowingProgress(true))
-
-        usersAPI.followSuccess(id).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(followSuccess(id))
-            }
-            dispatch(toggleFollowingProgress(false))
-        })
-    })
+export const follow = (id: number) => async (dispatch: Dispatch) => {
+    const apiMethod = usersAPI.followSuccess.bind(usersAPI)
+    const actionCreator = followSuccess
+    followUnfollowFlow(dispatch, id, apiMethod, actionCreator)
 }
-
 
 export default usersReducer;
