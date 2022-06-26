@@ -16,6 +16,7 @@ import {connect} from "react-redux";
 import {initializeApp} from "./redux/app-reducer";
 import {RootState} from "./redux/redux-store";
 import Preloader from "./components/common/preloader/Preloader";
+import Footer from "./components/Footer/Footer";
 
 export type MapDispatchToPropsType = {
     initializeApp: () => void
@@ -35,8 +36,6 @@ class App extends Component<MapDispatchToPropsType & MapStateToPropsType> {
     componentDidMount() {
         this.props.initializeApp()
     }
-
-
     render() {
 
         if(!this.props.initialized){
@@ -57,6 +56,7 @@ class App extends Component<MapDispatchToPropsType & MapStateToPropsType> {
                         <Route path="/Login" render={() => <Login/>}/>
                     </div>
                 </div>
+                <Footer footerValue={'SocialNetwork, all rights reserved'}/>
             </>
         );
     }
