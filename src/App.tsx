@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import classes from './components/Profile/ProfileInfo/Profile.module.css'
-import {Route, withRouter} from "react-router-dom";
+import {Route, Switch, withRouter} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -47,13 +47,15 @@ class App extends Component<MapDispatchToPropsType & MapStateToPropsType> {
                 <div className={classes.main}>
                     <Navbar/>
                     <div className={classes.MainContent}>
-                        <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
-                        <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
-                        <Route path="/Users" render={() => <UsersContainer/>}/>
-                        <Route path="/News" render={() => <News/>}/>
-                        <Route path="/Music" render={() => <Music/>}/>
-                        <Route path="/Settings" render={() => <Settings/>}/>
-                        <Route path="/Login" render={() => <Login/>}/>
+                        <Switch>
+                            <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
+                            <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
+                            <Route path="/Users" render={() => <UsersContainer/>}/>
+                            <Route path="/News" render={() => <News/>}/>
+                            <Route path="/Music" render={() => <Music/>}/>
+                            <Route path="/Settings" render={() => <Settings/>}/>
+                            <Route path="/Login" render={() => <Login/>}/>
+                        </Switch>
                     </div>
                 </div>
                 <Footer footerValue={'SocialNetwork, all rights reserved'}/>

@@ -11,10 +11,6 @@ type MyPostsPropsType = {
     dispatch?: (action: ActionType) => void
 }
 
-type ValuesType = {
-    newPostText: string
-}
-
 
 const MyPosts = React.memo((props: MyPostsPropsType) => {
 
@@ -23,6 +19,7 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
                                                     likeQuantity={post.likeQuantity}/>)
 
     const addPost = (values: any) => {
+        console.log({values})
         props.addPost(values.newPostText)
     }
 

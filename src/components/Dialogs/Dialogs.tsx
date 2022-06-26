@@ -20,7 +20,7 @@ const Dialogs = (props: DialogsPropsType) => {
 
     const addNewMessage = (values:any) => {
         props.sendMessage(values.newMessageBody)
-        console.log(values)
+        console.log({values})
     }
 
     return (

@@ -3,6 +3,7 @@ import {WrappedFieldProps} from "redux-form";
 import s from "./formsControls.module.css"
 
 const FormControl: React.FC<WrappedFieldProps> = ({meta, children})=>{
+    console.log({meta, children})
     const hasError = meta.touched && meta.error
     return (
         <div>

@@ -3,8 +3,9 @@ import React from "react";
 import {Textarea} from "../common/FormsControls/FormsControls";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
 
+const maxLengthCreator50 = maxLengthCreator(50)
+
 const AddMessageForm = (props: InjectedFormProps) => {
-    const maxLengthCreator50 = maxLengthCreator(50)
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
