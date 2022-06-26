@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import styles from "../../Users/users.module.css";
 // @ts-ignore
 import userPhoto from "../../../assets/images/user-profile.png";
+import {v1} from "uuid";
 
 type PaginatorPropsType = {
     pageSize: number
@@ -36,8 +37,8 @@ const Paginator = (props: PaginatorPropsType) => {
             {pages.filter(p => p >= leftPortionPageNumber && p<= rightPortionPageNumber)
                 .map((p) => {
                     return (
-                        <span className={`${props.currentPage === p && styles.selectedPage} ${styles.span}`}
-                              onClick={(e) => {
+                        <span key={v1()} className={`${props.currentPage === p && styles.selectedPage} ${styles.span}`}
+                              onClick={() => {
                                   props.onPageChanged(p)
                               }}>{p}
                 </span>
