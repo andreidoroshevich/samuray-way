@@ -9,7 +9,7 @@ const Footer = (props: FooterPropsType) => {
     return (
         <div className={classes.AppFooter}>
             <footer>
-                <div>
+                <div className={classes.text}>
                     {props.footerValue}
                 </div>
 

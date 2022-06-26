@@ -29,7 +29,7 @@
 .MainContent {
   background-color: lightblue;
   margin-top: 5vh;
-  min-height: 100%;
+  min-height: 80vh;
   width: 80vw;
   display: flex;
   flex-direction: column;

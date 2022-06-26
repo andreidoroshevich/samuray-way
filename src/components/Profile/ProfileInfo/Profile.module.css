@@ -1,4 +1,5 @@
 .main {
+    min-height: 80vh;
     background-color: lightblue;
     display: flex;
     font-size: calc(10px + 2vmin);
