@@ -17,6 +17,15 @@ type FormDataType = {
 
 export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
+        <>
+            <p>To log in get registered
+                <a href={'https://social-network.samuraijs.com/'}
+                   target={'_blank'}> here
+                </a>
+            </p>
+            <p>or use common test account credentials:</p>
+            <p>Email: free@samuraijs.com</p>
+            <p>Password: free</p>
         <form onSubmit={props.handleSubmit} className={s.form}>
             <div>
                 <Field placeholder={"Login"} name={'email'} component={Input} validate={[required]}/>
@@ -36,6 +45,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 <button>Login</button>
             </div>
         </form>
+            </>
     )
 }
 
