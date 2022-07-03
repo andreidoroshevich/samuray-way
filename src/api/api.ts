@@ -1,4 +1,7 @@
 import axios from "axios";
+import {ContactsType, ProfileType} from "../components/Profile/ProfileContainer";
+import {ProfileDataFormType} from "../components/Profile/ProfileInfo/ProfileDataForm";
+import ProfileInfo from "../components/Profile/ProfileInfo/ProfileInfo";
 
 
 const instance = axios.create({
@@ -8,6 +11,16 @@ const instance = axios.create({
         'API-KEY': '777d961a-f9a7-4dc0-b651-7f2e8df99fbe'
     }
 })
+
+
+export type ProfileRequestType = {
+    aboutMe: string
+    contacts: ContactsType
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+}
+
 
 export const usersAPI = {
     getUsers(currentPage: number = 1, pageSize: number = 10) {
@@ -63,6 +76,9 @@ export const profileAPI = {
             .then(response => {
                 return response.data
             })
+    },
+    saveProfile(profile: ProfileRequestType)  {
+        return instance.put(`profile`, profile)
     },
 
 

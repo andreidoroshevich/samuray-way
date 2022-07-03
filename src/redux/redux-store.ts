@@ -6,7 +6,7 @@ import usersReducer, {UsersActionsType} from "./users-reducer";
 import authReducer, {AuthActionsType} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {reducer as formReducer} from "redux-form"
-import {useDispatch} from "react-redux";
+import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import appReducer from "./app-reducer";
 
 
@@ -31,6 +31,7 @@ export type RootState = ReturnType<typeof reducer>
 export type ThunkType <ReturnType = void> = ThunkAction<ReturnType,RootState, unknown, AppActionsType>
 type AppActionsType = PostActionsType | MessagesActionsType | DialogsActionsType | UsersActionsType | AuthActionsType
 export const useAppDispatch = () => useDispatch<ThunkDispatch<RootState, unknown, AppActionsType>>()
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 
 

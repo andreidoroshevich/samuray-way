@@ -16,3 +16,7 @@ export const getIsAuth=(state: RootState) =>{
     return state.auth.isAuth
 }
 
+export const getProfileError=(state: RootState) =>{
+    return state.posts.profile
+}
+

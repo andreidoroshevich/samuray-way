@@ -1,7 +1,4 @@
 import {Dispatch} from "redux";
-import {authAPI} from "../api/api";
-import {ThunkType} from "./redux-store";
-import {stopSubmit} from "redux-form";
 import {getAuthUserData} from "./auth-reducer";
 
 export type InitialStateType = {

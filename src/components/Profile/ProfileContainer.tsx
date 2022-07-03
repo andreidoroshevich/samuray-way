@@ -3,20 +3,21 @@ import Profile from "./ProfileInfo/Profile";
 import {RootState} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router-dom";
-import {getStatus, getUserProfile, savePhoto, updateStatus} from "../../redux/posts-reducer";
+import {getStatus, getUserProfile, savePhoto, saveProfile, updateStatus} from "../../redux/posts-reducer";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 import {getIsAuth, getProfile, getStateStatus, getUserId} from "../../redux/profile-selectors";
+import {ProfileDataFormType} from "./ProfileInfo/ProfileDataForm";
 
 export type ContactsType = {
-    github: string
-    vk: string
     facebook: string
+    github: string,
     instagram: string
+    mainLink: string | null,
     twitter: string
-    website: string
-    youtube: string
-    mainLink: string
+    vk: string
+    website: string | null,
+    youtube: string | null
 }
 
 export type PhotosType = {
@@ -25,8 +26,9 @@ export type PhotosType = {
 }
 
 export type ProfileType = {
-    userId: number | null
+    userId: number
     status: string
+    aboutMe: string
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
@@ -39,13 +41,15 @@ export type MapStateToPropsType = {
     status: string
     authorizedUserId: number | null
     isAuth: boolean
+    error: string
 }
 
 export type MapDispatchToPropsType = {
     getUserProfile: (userId: number | null) => void
     getStatus: (userId: number | null) => void
     updateStatus: (status: string) => void
-    savePhoto: (photos: any)=>void
+    savePhoto: (photos: PhotosType) => void
+    saveProfile: (data: ProfileDataFormType) => void
 }
 
 export type PathParamsType = {
@@ -83,6 +87,7 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 
     render() {
+
         return (
             <>
                 <Profile {...this.props}
@@ -91,6 +96,8 @@ class ProfileContainer extends React.Component<PropsType> {
                          updateStatus={this.props.updateStatus}
                          isOwner={!this.props.match.params.userId}
                          savePhoto={this.props.savePhoto}
+                         saveProfile={this.props.saveProfile}
+                         error={this.props.error}
                 />
             </>
         );
@@ -103,17 +110,11 @@ let mapStateToProps = (state: RootState): MapStateToPropsType => ({
     status: getStateStatus(state),
     authorizedUserId: getUserId(state),
     isAuth: getIsAuth(state),
+    error: state.posts.error,
 })
 
-// let mapStateToProps = (state: RootState): MapStateToPropsType => ({
-//     profile: state.posts.profile,
-//     status: state.posts.status,
-//     authorizedUserId: state.auth.userId,
-//     isAuth: state.auth.isAuth
-// })
-
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto}),
+    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto, saveProfile}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer)

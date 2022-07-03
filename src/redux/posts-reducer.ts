@@ -1,12 +1,16 @@
 import {PostPropsType} from "../components/Profile/MyPosts/Post/Post";
 import {Dispatch} from "redux";
-import {profileAPI} from "../api/api";
+import {profileAPI, ProfileRequestType} from "../api/api";
+import {PhotosType} from "../components/Profile/ProfileContainer";
+import {RootState, ThunkType} from "./redux-store";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = "samurai-network/post/ADD-POST";
 const SET_USER_PROFILE = "samurai-network/post/SET_USER_PROFILE";
 const SET_USER_STATUS = "samurai-network/post/SET_USER_STATUS";
 const DELETE_POST = "samurai-network/post/DELETE_POST";
 const SAVE_USER_PHOTO = "samurai-network/post/SAVE_USER_POST";
+const SAVE_PROFILE_ERROR = "samurai-network/post/SAVE_PROFILE_ERROR";
 
 let initialState = {
     posts: [
@@ -32,7 +36,8 @@ let initialState = {
 
     ],
     profile: {},
-    status: ""
+    status: "",
+    error:""
 }
 
 export type PostActionsType = ReturnType<typeof addPostActionCreator>
@@ -40,6 +45,7 @@ export type PostActionsType = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof setUserStatus>
     | ReturnType<typeof deletePostAC>
     | ReturnType<typeof savePhotoSuccess>
+    | ReturnType<typeof saveProfileError>
 
 export const addPostActionCreator = (newPostText: string) => {
     return {
@@ -74,6 +80,14 @@ export const savePhotoSuccess = (photos: any) => {
     return {
         type: SAVE_USER_PHOTO,
         photos: photos
+    } as const
+}
+
+
+export const saveProfileError = (error: string) => {
+    return {
+        type: SAVE_PROFILE_ERROR,
+        error
     } as const
 }
 
@@ -119,7 +133,11 @@ const postsReducer = (state = initialState, action: PostActionsType) => {
                 profile: {...state.profile, photos: action.photos}
             }
         }
-
+        case SAVE_PROFILE_ERROR: {
+            return {
+                ...state, error: action.error
+            }
+        }
         default:
             return (
                 state
@@ -146,9 +164,24 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
     }
 }
 
-export const savePhoto = (photo: any) => async (dispatch: Dispatch) => {
+export const savePhoto = (photo: PhotosType) => async (dispatch: Dispatch) => {
     const res = await profileAPI.savePhoto(photo)
     if (res.resultCode === 0) {
         dispatch(savePhotoSuccess(res.data.photos))
+    }
+}
+
+
+export const saveProfile = (profile: ProfileRequestType): ThunkType => async (dispatch: Dispatch, getState: ()=>RootState) => {
+    const userId=getState().auth.userId
+    const res = await profileAPI.saveProfile(profile)
+
+    if (res.data.resultCode === 0) {
+        // @ts-ignore
+        dispatch(getUserProfile(userId))
+    }
+    if (res.data.resultCode === 1){
+        dispatch(saveProfileError(res.data.messages[0]))
+        dispatch(stopSubmit('editProfile', {_error: res.data.messages[0]}))
     }
 }
