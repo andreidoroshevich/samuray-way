@@ -1,7 +1,5 @@
 import axios from "axios";
-import {ContactsType, ProfileType} from "../components/Profile/ProfileContainer";
-import {ProfileDataFormType} from "../components/Profile/ProfileInfo/ProfileDataForm";
-import ProfileInfo from "../components/Profile/ProfileInfo/ProfileInfo";
+import {ContactsType} from "../components/Profile/ProfileContainer";
 
 
 const instance = axios.create({
@@ -91,8 +89,8 @@ export const authAPI = {
                 return response.data
             })
     },
-    login(email: string, password: string, rememberMe: boolean=false) {
-        return instance.post(`auth/login`, {email, password, rememberMe})
+    login(email: string, password: string, rememberMe: boolean=false, captcha: string | null =null) {
+        return instance.post(`auth/login`, {email, password, rememberMe, captcha})
             .then(response => {
                 return response.data
             })
@@ -106,6 +104,12 @@ export const authAPI = {
 
 }
 
+
+export const securityAPI = {
+    getCaptchaUrl: ()=>{
+        return instance.get(`security/get-captcha-url`)
+    }
+}
 
 
 
